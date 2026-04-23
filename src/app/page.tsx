@@ -41,9 +41,15 @@ const serializedRoutes: Route[] = routes.map(r => ({
   updatedAt: r.updatedAt.toISOString(),
 }));
 
-    const serializedReviews = reviews.map(r => ({
-      ...r,
+   const serializedReviews = reviews.map(r => ({
+      id: r.id,
+      userId: r.userId,
+      bookingId: r.bookingId ?? undefined,
+      rating: r.rating,
+      comment: r.comment ?? undefined,
+      isApproved: r.isApproved,
       createdAt: r.createdAt.toISOString(),
+      user: r.user,
     }));
 
     return { routes: serializedRoutes, reviews: serializedReviews };
