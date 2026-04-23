@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: 'Book outstation cabs, airport taxis, city rides and tour packages from Bangalore. Trusted cab service across South India with 24/7 support. Call 9530800800.',
 };
 
-async function getHomeData(): Promise<{ routes: Route[]; reviews: (Review & { user: { name: string } })[] }> {
+async function getHomeData(): Promise<{ routes: Route[]; reviews: { id: string; userId: string; bookingId?: string; rating: number; comment?: string; isApproved: boolean; createdAt: string; user: { name: string } }[] }> {
   try {
     const [routes, reviews] = await Promise.all([
       prisma.route.findMany({ where: { isFeatured: true }, take: 8, orderBy: { destination: 'asc' } }),
