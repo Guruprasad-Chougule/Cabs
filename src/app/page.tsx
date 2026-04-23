@@ -24,13 +24,22 @@ async function getHomeData(): Promise<{ routes: Route[]; reviews: (Review & { us
     ]);
 
     // Serialize Prisma Decimal → number and Date → string so plain objects pass to client components
-    const serializedRoutes: Route[] = routes.map(r => ({
-      ...r,
-      distanceKm: Number(r.distanceKm),
-      durationHours: Number(r.durationHours),
-      createdAt: r.createdAt.toISOString(),
-      updatedAt: r.updatedAt.toISOString(),
-    }));
+const serializedRoutes: Route[] = routes.map(r => ({
+  id: r.id,
+  slug: r.slug,
+  origin: r.origin,
+  destination: r.destination,
+  distanceKm: Number(r.distanceKm),
+  durationHours: Number(r.durationHours),
+  description: r.description ?? undefined,
+  highlights: r.highlights,
+  imageUrl: r.imageUrl ?? undefined,
+  isFeatured: r.isFeatured,
+  metaTitle: r.metaTitle ?? undefined,
+  metaDesc: r.metaDesc ?? undefined,
+  createdAt: r.createdAt.toISOString(),
+  updatedAt: r.updatedAt.toISOString(),
+}));
 
     const serializedReviews = reviews.map(r => ({
       ...r,
