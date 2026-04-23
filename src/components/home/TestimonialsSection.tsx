@@ -12,7 +12,7 @@ const FALLBACK_REVIEWS = [
   { id: '5', rating: 5, comment: 'Perfect Tirupati pilgrimage trip. Driver helped with darshan queue management. Truly a stress-free and blessed experience. Thank you NV Cabs!', user: { name: 'Anand Patel' }, createdAt: new Date().toISOString(), userId: '5', isApproved: true },
 ];
 
-export default function TestimonialsSection({ reviews }: { reviews: (Review & { user: { name: string } })[] }) {
+export default function TestimonialsSection({ reviews }: { reviews: { id: string; userId: string; bookingId?: string; rating: number; comment?: string; isApproved: boolean; createdAt: string; user: { name: string } }[] }) {
   const [current, setCurrent] = useState(0);
   const allReviews = reviews.length > 0 ? reviews : FALLBACK_REVIEWS;
   const prev = () => setCurrent(c => (c === 0 ? allReviews.length - 1 : c - 1));
