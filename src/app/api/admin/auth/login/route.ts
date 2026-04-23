@@ -4,6 +4,7 @@ import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
 import { signToken } from '@/lib/auth';
+export const dynamic = 'force-dynamic';
 
 const schema = z.object({
   phone: z.string().regex(/^[6-9]\d{9}$/),
